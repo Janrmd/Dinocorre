@@ -1,0 +1,104 @@
+[gd_scene load_steps=14 format=3 uid="uid://mtbtale04q00"]
+
+[ext_resource type="Script" path="res://dinoplayer/player.gd" id="1_yjuk0"]
+[ext_resource type="Texture2D" uid="uid://dtx0n70mqgtqp" path="res://mob/assetsmob/yoshii.png" id="2_s3evi"]
+[ext_resource type="AudioStream" uid="uid://cg4e4lsxmj85t" path="res://dinoplayer/jump.mp3" id="3_qi06p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4480s"]
+atlas = ExtResource("2_s3evi")
+region = Rect2(459, 0, 51, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u52ds"]
+atlas = ExtResource("2_s3evi")
+region = Rect2(0, 0, 51, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sv2ju"]
+atlas = ExtResource("2_s3evi")
+region = Rect2(561, 0, 51, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ty4bi"]
+atlas = ExtResource("2_s3evi")
+region = Rect2(51, 0, 51, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcrsb"]
+atlas = ExtResource("2_s3evi")
+region = Rect2(102, 0, 51, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5h70"]
+atlas = ExtResource("2_s3evi")
+region = Rect2(153, 0, 51, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkrar"]
+atlas = ExtResource("2_s3evi")
+region = Rect2(204, 0, 51, 54)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8wtgq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4480s")
+}],
+"loop": true,
+"name": &"crouch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u52ds")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sv2ju")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ty4bi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcrsb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5h70")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkrar")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a7mkv"]
+size = Vector2(118, 198)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5446w"]
+size = Vector2(143.5, 154.75)
+
+[node name="Player" type="CharacterBody2D" groups=["dinosaurio"]]
+script = ExtResource("1_yjuk0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_8wtgq")
+animation = &"crouch"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5, 23)
+shape = SubResource("RectangleShape2D_a7mkv")
+debug_color = Color(1, 0.379336, 0.610854, 0.42)
+
+[node name="CrouchCollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-50, 43.375)
+shape = SubResource("RectangleShape2D_5446w")
+debug_color = Color(0, 0.60675, 0.659301, 0.42)
+
+[node name="AudioJump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_qi06p")
